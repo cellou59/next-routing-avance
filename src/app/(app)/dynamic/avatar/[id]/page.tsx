@@ -1,12 +1,14 @@
 import users from '@/db/user'
 import Image from 'next/image'
-
+import {notFound} from 'next/navigation'
 export default function Page({params}: {params: {id: string}}) {
   // 🐶 utilise l'id  en props pour recuperer le user de la bd
   const avatarID = params.id
   const currentUser = users.find(
     (user) => user.id === Number.parseInt(avatarID)
   )
+
+  if (!currentUser) notFound()
 
   return (
     <div className="flex flex-col items-center">
