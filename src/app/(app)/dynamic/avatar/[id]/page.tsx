@@ -1,12 +1,9 @@
 import users from '@/db/user'
 import Image from 'next/image'
 
-// 🐶 recupère le props 'params' et extrait l'id'
-// doc : https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#example
-// 🤖 {params}: {params: {id: string}}
-export default function Page() {
+export default function Page({params}: {params: {id: string}}) {
   // 🐶 utilise l'id  en props pour recuperer le user de la bd
-  const avatarID = '1'
+  const avatarID = params.id
   const currentUser = users.find(
     (user) => user.id === Number.parseInt(avatarID)
   )
